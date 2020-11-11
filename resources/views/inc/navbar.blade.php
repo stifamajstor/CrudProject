@@ -8,7 +8,7 @@
         </li>
       </ul>
       <ul class="nav navbar-nav float-right">
-        <li><a href="/project/create">Create Project</a></li>
+        <li><a href="/projects/create">Create Project</a></li>
       </ul>
     </div>
   </nav> 

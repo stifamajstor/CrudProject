@@ -11,7 +11,7 @@
             @include('inc.navbar')
             <br>
             <div class="container">
-                {{-- @include('inc.messages') --}}
+                @include('inc.messages')
                 @yield('content')
             </div>
         </div>
@@ -19,6 +19,9 @@
         <script src="https://cdn.ckeditor.com/4.13.0/standard/ckeditor.js"></script>
         <script>
             CKEDITOR.replace( 'editor' );
-        </script>   
+        </script>
+        <script>
+            CKEDITOR.replace( 'editor2' );
+        </script>    
     </body>
 </html>
