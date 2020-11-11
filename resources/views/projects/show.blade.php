@@ -6,11 +6,14 @@
 <br>
 <br>
 <h1>{{$project->title}}</h1>
+<hr>
 <div>
+    <h5>Technologies/tools required</h5>
     {!!$project->technologies!!}
 </div>
 <hr>
 <div>
+    <h5>Project detailed description</h5>
     {!!$project->description!!}
 </div>
 <hr>
