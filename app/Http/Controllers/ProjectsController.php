@@ -77,7 +77,8 @@ class ProjectsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $project = Project::find($id);
+        return view('projects.edit')->with('project', $project);
     }
 
     /**
@@ -89,7 +90,14 @@ class ProjectsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //Edit Post
+        $project = Project::find($id);
+        $project->title = $request->input('title');
+        $project->technologies = $request->input('technologies');
+        $project->description = $request->input('description');
+        $project->save();
+
+        return redirect('/projects')->with('success', 'Project Updated');
     }
 
     /**
