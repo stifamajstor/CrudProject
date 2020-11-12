@@ -7,6 +7,17 @@ use App\Models\Project;
 
 class ProjectsController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -49,6 +60,7 @@ class ProjectsController extends Controller
             $project->title = $request->input('title');
             $project->technologies = $request->input('technologies');
             $project->description = $request->input('description');
+            $project->user_id = auth()->user()->id;
             $project->save();
     
             return redirect('/projects')->with('success', 'Project Created');
@@ -78,6 +90,13 @@ class ProjectsController extends Controller
     public function edit($id)
     {
         $project = Project::find($id);
+
+        //Check if user is correct
+        if(auth()->user()->id !== $project->user_id){
+            return redirect('/projects')->with('error', 'Unauthorized page');
+        }
+
+
         return view('projects.edit')->with('project', $project);
     }
 
@@ -109,6 +128,11 @@ class ProjectsController extends Controller
     public function destroy($id)
     {
         $project = Project::find($id);
+
+        //Check if user is correct
+        if(auth()->user()->id !== $project->user_id){
+            return redirect('/projects')->with('error', 'Unauthorized page');
+        }
         $project->delete();
         return redirect('/projects')->with('success', 'Project Deleted');
     }
